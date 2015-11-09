@@ -1,7 +1,0 @@
-language: go
-sudo: false
-go:
-  - 1.4
-
-script:
- - go get github.com/smartystreets/goconvey && go test
