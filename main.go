@@ -17,6 +17,8 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
+	"time"
 )
 
 func Echo() string {
@@ -31,5 +33,15 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(msg)
+
+	if os.Getenv("GOSLEEP") != "" {
+		sleepSeconds, err := strconv.Atoi(os.Getenv("GOSLEEP"))
+		if err != nil {
+			panic(err)
+		}
+		fmt.Println(fmt.Sprintf("Sleeping for %d seconds.", sleepSeconds))
+		time.Sleep(time.Duration(sleepSeconds) * time.Second)
+	}
+
 	os.Exit(0)
 }
